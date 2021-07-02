@@ -10,6 +10,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.transaction.Transactional;
+
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -74,6 +76,7 @@ class AccountControllerTest {
 
     @SneakyThrows
     @Test
+    @Transactional
     void givenValidAccountInformation_OnCall_ReturnAccount_And_200() {
         final var REQUEST_BUILDER =
                 request(HttpMethod.GET, "/account/{account_number}/type/{account_type}", VALID_SOURCE_ACCOUNT_NUMBER, VALID_SOURCE_ACCOUNT_TYPE)

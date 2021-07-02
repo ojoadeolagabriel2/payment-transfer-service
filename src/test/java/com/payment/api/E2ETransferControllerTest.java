@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -42,6 +43,7 @@ class E2ETransferControllerTest {
 
     @SneakyThrows
     @Test
+    @Transactional
     void givenValidTransferRequest_OnPost_ReturnValidTransferResponse_And_200() {
         final var REQUEST_BUILDER =
                 request(HttpMethod.POST, "/transfer")

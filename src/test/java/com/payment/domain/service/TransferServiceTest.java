@@ -17,12 +17,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static com.payment.domain.valueobject.TransactionType.CREDIT;
 import static com.payment.domain.valueobject.TransactionType.DEBIT;
 import static java.time.LocalDateTime.now;
 import static java.util.Optional.of;
+import static java.util.UUID.randomUUID;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -46,7 +46,7 @@ class TransferServiceTest {
     }
 
     @Test
-    void onProcessTransfer_ReturnSuccess() {
+    void onProcessTransfer_WhenBalanceAvailable_ReturnSuccess() {
         final String sourceAccountNumber = "12345";
         final String sourceAccountType = "current";
 
@@ -58,7 +58,7 @@ class TransferServiceTest {
 
         var response = transferService.processTransfer(TransferRequest
                 .builder()
-                .requestReferenceId(UUID.randomUUID().toString())
+                .requestReferenceId(randomUUID().toString())
                 .senderEmail("a@y.com")
                 .amount(50.0)
                 .sourceAccount(Account.builder().accountNumber(sourceAccountNumber).accountType(sourceAccountType).build())
@@ -69,7 +69,7 @@ class TransferServiceTest {
     }
 
     @Test
-    void onProcessTransfer_ReturnInsufficientBalance() {
+    void onProcessTransfer_WhenBalanceInsufficient_ReturnInsufficientFunds() {
         final String sourceAccountNumber = "12345";
         final String sourceAccountType = "current";
 
@@ -81,7 +81,7 @@ class TransferServiceTest {
 
         var exception = assertThrows(BusinessException.class, () -> transferService.processTransfer(TransferRequest
                 .builder()
-                .requestReferenceId(UUID.randomUUID().toString())
+                .requestReferenceId(randomUUID().toString())
                 .senderEmail("a@y.com")
                 .amount(50.0)
                 .sourceAccount(Account.builder().accountNumber(sourceAccountNumber).accountType(sourceAccountType).build())

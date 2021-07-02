@@ -6,6 +6,7 @@ import com.payment.infrastructure.repository.CustomerAccountRepository;
 import com.payment.infrastructure.repository.CustomerAccountTransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -44,6 +45,7 @@ public class AccountService {
         return Optional.empty();
     }
 
+    @Transactional
     public double getAccountBalance(long accountId) {
         var entries = accountTransactionRepository.findAllByCustomerAccountId(accountId);
         var totalCredits = entries
