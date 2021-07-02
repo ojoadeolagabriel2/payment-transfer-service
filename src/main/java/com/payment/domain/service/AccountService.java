@@ -6,8 +6,8 @@ import com.payment.infrastructure.repository.CustomerAccountRepository;
 import com.payment.infrastructure.repository.CustomerAccountTransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static com.payment.domain.valueobject.TransactionType.CREDIT;
@@ -28,6 +28,7 @@ public class AccountService {
      * @param accountType   customer account type
      * @return account summary
      */
+    @Transactional
     public Optional<Account> getAccountByNumberAndType(String accountNumber, String accountType) {
         var possibleAccount = repository.findCustomerAccountByAccountNumberAndAccountType(accountNumber, accountType);
         if (possibleAccount.isPresent()) {
@@ -45,7 +46,6 @@ public class AccountService {
         return Optional.empty();
     }
 
-    @Transactional
     public double getAccountBalance(long accountId) {
         var entries = accountTransactionRepository.findAllByCustomerAccountId(accountId);
         var totalCredits = entries
