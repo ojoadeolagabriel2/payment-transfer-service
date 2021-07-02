@@ -26,13 +26,13 @@ A lightweight transfer & account management system
 
 # installation dependencies
 
-Service requires that apache maven 3+ be installed.
+Service requires apache maven 3+ and docker installed on your host machine.
 
 1. install `apache maven` from here unto your unix machine: https://www.baeldung.com/install-maven-on-windows-linux-mac#installing-maven-on-mac-os-x
 2. install `java 11` on your unix machine as seen here https://java.tutorials24x7.com/blog/how-to-install-java-11-on-mac
-3. docker is only `required if you follow` the "How to run code (as docker container)" approach below
+3. install docker
 
-###### confirm maven is installed once step 1 above is complete:
+###### confirm maven is available like this:
 
 ```bash
 mvn -v
@@ -69,8 +69,7 @@ should return a 200 OK message with response body as below:
 
 ```json
 {
-  "status": "UP",
-  ...
+  "status": "UP"
 }
 ```
 
