@@ -19,8 +19,8 @@ A lightweight transfer & account management system
 
 - [Dependencies](#installation-dependencies)
     - [Parameters to consider](#parameters-to-consider)
-- [How to run code (from jar)](#how-to-run-from-jar)
-- [How to run code (as docker container)](#how-to-run-code-from-docker-container)
+- [How to run code (from jar)](#a-how-to-run-from-jar)
+- [How to run code (as docker container)](#b-how-to-run-code-from-docker-container)
 - [Invalid API request & error handling](#handling-errors)
 - [How to get API metrics](#how-to-view-service-metrics)
 
@@ -48,7 +48,7 @@ server:
   port: 40000
 ```
 
-### How to run from jar
+### A. How to run from jar
 
 Running this service is as easy as 1.. 2.. 3..
 
@@ -140,7 +140,7 @@ curl --location --request POST 'http://localhost:40000/transfer' \
 }
 ```
 
-### How to run code from docker container
+### B. How to run code from docker container
 
 Running this service from docker is as easy as 1.. 2.. 3..
 
