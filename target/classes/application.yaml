@@ -1,0 +1,41 @@
+server:
+  port: 40000
+
+
+logging:
+  level:
+    org.springframework.transaction.interceptor:  TRACE
+spring:
+  jpa:
+    show-sql: false
+  h2:
+    console:
+      enabled: ${ENV_H2_CONSOLE_ENABLED:true}
+  banner:
+    image:
+      location: "classpath:banner.txt"
+  application:
+    name: "payment-transfer-service"
+  datasource:
+    url: 'jdbc:h2:mem:testdb;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1'
+    username: ${ENV_DATASOURCE_USERNAME:sa}
+    password: ${ENV_DATASOURCE_SECRET:}
+    driver-class-name: 'org.h2.Driver'
+
+flyway:
+  user: ${ENV_DATASOURCE_USERNAME:sa}
+  password: ${ENV_DATASOURCE_SECRET:password}
+  baseline-on-migrate: true
+  table: schema_version
+
+management:
+  endpoint:
+    health:
+      group:
+        readiness:
+          include: "*"
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: ${ENV_MONITORING_PATH:/}
