@@ -1,5 +1,6 @@
 package com.payment.domain.service;
 
+import com.payment.domain.model.Account;
 import com.payment.infrastructure.entity.CustomerAccount;
 import com.payment.infrastructure.entity.CustomerAccountTransaction;
 import com.payment.infrastructure.repository.CustomerAccountRepository;
@@ -19,11 +20,14 @@ import static com.payment.domain.valueobject.TransactionType.CREDIT;
 import static com.payment.domain.valueobject.TransactionType.DEBIT;
 import static java.time.LocalDateTime.now;
 import static java.util.Optional.of;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @Slf4j
 @ExtendWith(MockitoExtension.class)
 class AccountServiceTest {
+
+    private static final Account EMPTY = null;
 
     @Mock
     CustomerAccountTransactionRepository accountTransactionRepository;
@@ -42,11 +46,12 @@ class AccountServiceTest {
     void onGetAccountBalance_GivenCustomerHasCreditAndDebitActions_ReturnValidBalance() {
         when(repository.findCustomerAccountByAccountNumberAndAccountType("12345", "savings"))
                 .thenReturn(of(getCustomerAccount()));
+
         when(accountTransactionRepository.findAllByCustomerAccountId(1L))
                 .thenReturn(getCustomerAccountTransactions());
 
         var result = service.getAccountByNumberAndType("12345", "savings");
-        Assertions.assertNotNull(result.orElseGet(null));
+        assertNotNull(result.orElse(EMPTY));
     }
 
     @Test
