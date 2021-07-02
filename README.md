@@ -227,6 +227,8 @@ Where an invalid payload is posted to /instructions api, HTTP 400 (bad request) 
 }
 ```
 
+> other support exception scenarios include `insufficient funds, invalid account type, account not found` to mention a few.
+
 ### How to view service metrics
 
 This application leverages prometheus to expose API metrics (jvm, memory, http...), curl as shown below to view.
