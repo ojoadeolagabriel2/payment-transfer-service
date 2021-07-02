@@ -48,12 +48,12 @@ public class AccountService {
         var entries = accountTransactionRepository.findAllByCustomerAccountId(accountId);
         var totalCredits = entries
                 .stream()
-                .filter(c -> CREDIT.getKey().equals(c.getType())).map(CustomerAccountTransaction::getAmount)
+                .filter(c -> CREDIT.getCode().equals(c.getType())).map(CustomerAccountTransaction::getAmount)
                 .reduce(0.0, Double::sum);
 
         var totalDebits = entries
                 .stream()
-                .filter(c -> DEBIT.getKey().equals(c.getType())).map(CustomerAccountTransaction::getAmount)
+                .filter(c -> DEBIT.getCode().equals(c.getType())).map(CustomerAccountTransaction::getAmount)
                 .reduce(0.0, Double::sum);
 
         return totalCredits - totalDebits;

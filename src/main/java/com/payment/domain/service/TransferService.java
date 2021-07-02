@@ -8,12 +8,12 @@ import com.payment.infrastructure.repository.CustomerAccountRepository;
 import com.payment.infrastructure.repository.CustomerAccountTransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.payment.domain.valueobject.ResponseCode.SUCCESS;
 import static com.payment.domain.valueobject.TransactionType.DEBIT;
 import static java.lang.String.format;
+import static java.time.LocalDateTime.now;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +25,7 @@ public class TransferService {
     private final CustomerAccountRepository accountRepository;
     private final CustomerAccountTransactionRepository accountTransactionRepository;
 
+    @Transactional
     public TransferProcessResponse processTransfer(TransferRequest request) {
         var sourceAccount = request.getSourceAccount();
 
@@ -44,9 +45,9 @@ public class TransferService {
             var transfer = new CustomerAccountTransaction();
             transfer.setAmount(request.getAmount());
             transfer.setCustomerAccountId(account.getId());
-            transfer.setType(DEBIT.getKey());
-            transfer.setCreated(LocalDateTime.now());
-            transfer.setModified(LocalDateTime.now());
+            transfer.setType(DEBIT.getCode());
+            transfer.setCreated(now());
+            transfer.setModified(now());
             accountTransactionRepository.save(transfer);
 
             // update transaction ledger

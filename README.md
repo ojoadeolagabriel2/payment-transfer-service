@@ -17,14 +17,14 @@ A lightweight transfer & account management system
 
 # Table of content
 
-- [Dependencies](#installation-dependencies)
+- [Dependencies](#build-and-runtime-dependencies)
     - [Parameters to consider](#parameters-to-consider)
 - [How to run code (from jar)](#a-how-to-run-from-jar)
 - [How to run code (as docker container)](#b-how-to-run-code-from-docker-container)
 - [Invalid API request & error handling](#handling-errors)
 - [How to get API metrics](#how-to-view-service-metrics)
 
-# installation dependencies
+# build and runtime dependencies
 
 Service requires apache maven 3+ and docker installed on your host machine.
 

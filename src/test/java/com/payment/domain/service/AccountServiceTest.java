@@ -81,7 +81,7 @@ class AccountServiceTest {
         customerAccountTransaction.setCustomerAccountId(12345);
         customerAccountTransaction.setCreated(now());
         customerAccountTransaction.setModified(now());
-        customerAccountTransaction.setType(CREDIT.getKey());
+        customerAccountTransaction.setType(CREDIT.getCode());
         customerAccountTransaction.setAmount(300.0);
         list.add(customerAccountTransaction);
 
@@ -90,7 +90,7 @@ class AccountServiceTest {
         customerAccountTransaction2.setCustomerAccountId(12346);
         customerAccountTransaction2.setCreated(now());
         customerAccountTransaction2.setModified(now());
-        customerAccountTransaction2.setType(DEBIT.getKey());
+        customerAccountTransaction2.setType(DEBIT.getCode());
         customerAccountTransaction2.setAmount(200.0);
         list.add(customerAccountTransaction2);
 

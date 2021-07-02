@@ -9,5 +9,5 @@ public enum TransactionType {
     DEBIT("DR"),
     CREDIT("CR");
 
-    private final String key;
+    private final String code;
 }
