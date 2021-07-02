@@ -149,6 +149,7 @@ Running this service from docker is as easy as 1.. 2.. 3..
 chmod +x ./deployment/run_locally_via_docker.sh && ./deployment/run_locally_via_docker.sh
 ```
 > note: make sure no other process is on port 40001 with this: `kill -9 $(lsof -t -i:40001)`
+
 > image will have the name `bank.saudi.fransi/payment-transfer-service` and container name `payment-transfer-service`
 
 **2**. confirm application is running:
