@@ -15,8 +15,6 @@ m
 =src/main/java/com/payment/domain/error/BusinessException.java,d/7/d750ada945d0c54b2c9794fe8881c657d5198dda
 q
 Asrc/main/java/com/payment/domain/error/InvalidInputException.java,b/f/bfbb17e833f1de5f89d1d7615b55165e020ab33b
-e
-5src/main/java/com/payment/api/TransferController.java,5/1/51b2b92d4baad4eacbdede3ac573e5209fcf1c1d
 p
 @src/test/java/com/payment/domain/service/AccountServiceTest.java,4/6/462e0f9b7a3b5ed4251d6a9d9b8bd1759b7927f4
 n

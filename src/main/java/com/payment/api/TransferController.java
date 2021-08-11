@@ -24,13 +24,12 @@ import static org.springframework.http.ResponseEntity.ok;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/transfer")
+@RequestMapping(path = {"/transfer", "/transfer/v1"})
 public class TransferController {
 
     private final TransferService transferService;
     private final TransferCommandTransformer transformer;
     private final AccountInformationValidator validator;
-
 
     @Operation(summary = "Process transfer request")
     @ApiResponses(value = {
