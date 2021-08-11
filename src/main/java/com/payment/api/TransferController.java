@@ -34,7 +34,8 @@ public class TransferController {
     @Operation(summary = "Process transfer request")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Instruction processed successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid transfer instruction")
+            @ApiResponse(responseCode = "400", description = "Invalid transfer instruction"),
+            @ApiResponse(responseCode = "500", description = "Unexpected error detected"),
     })
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<TransferResponseDto> processTransfer(@RequestBody TransferRequestCommand requestCommand) {
