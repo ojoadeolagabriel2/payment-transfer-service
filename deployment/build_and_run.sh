@@ -4,11 +4,12 @@ set -xe
 
 # shellcheck disable=SC2039
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && cd ../ && pwd )"
-SERVICE_NAME="${ENV_SERVICE_NAME:-payment-transfer-service}"
 
 # script vars
-IMAGE_NAME="bank.saudi.fransi/${SERVICE_NAME}"
-VERSION="1.${2:-$(date +%Y%m%d%H%M%S)}"
+export ORG_PREFIX="bank.saudi.fransi"
+export SERVICE_NAME="${ENV_SERVICE_NAME:-payment-transfer-service}"
+export IMAGE_NAME="$ORG_PREFIX/$SERVICE_NAME"
+export VERSION="1.${2:-$(date +%Y%m%d%H%M%S)}"
 
 # switch to project dir
 cd "$DIR"
@@ -20,9 +21,7 @@ mvn clean package spring-boot:repackage
 docker build -t "${IMAGE_NAME}:latest" .
 # build versioned image
 docker build -t "${IMAGE_NAME}:${VERSION}" .
-
+# cleanup
 mvn clean
 
-# run image...
-docker stop "${SERVICE_NAME}" && docker rm "${SERVICE_NAME}" >/dev/null 2>&1
-docker run -d -p 40001:40000 --name "${SERVICE_NAME}" "${IMAGE_NAME}"
+"$DIR"/deployment/run_via_docker.sh

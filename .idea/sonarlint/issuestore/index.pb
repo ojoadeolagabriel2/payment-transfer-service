@@ -15,9 +15,6 @@ m
 =src/main/java/com/payment/domain/error/BusinessException.java,d/7/d750ada945d0c54b2c9794fe8881c657d5198dda
 q
 Asrc/main/java/com/payment/domain/error/InvalidInputException.java,b/f/bfbb17e833f1de5f89d1d7615b55165e020ab33b
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 e
 5src/main/java/com/payment/api/TransferController.java,5/1/51b2b92d4baad4eacbdede3ac573e5209fcf1c1d
 p
